@@ -7,7 +7,7 @@ import { ShowToastContex } from "../Context/ShowToastContex";
 import { ParentFolderIdContext } from "../Context/ParentFolderIdContext";
 import { RefetchFolderContext } from "../Context/refetchFolder";
 import Spinner from "../Spinner/Spinner";
-import { addFolder } from "@/CRUD/addFolder";
+import { useAddFolder } from "@/CRUD/addFolder";
 
 
 function CreateFolderModal({ refetchFolder,closeModal }) {
@@ -20,7 +20,7 @@ function CreateFolderModal({ refetchFolder,closeModal }) {
   const db = getFirestore(app)
 
   
-  const { mutateAsync, status, isPending } = addFolder(db,folderName,id,data,parentFolderId,refetchFolder,setShowToastMsg)
+  const { mutateAsync, status, isPending } = useAddFolder(db,folderName,id,data,parentFolderId,refetchFolder,setShowToastMsg)
 
   const createNewFolder = async () => {
     try {

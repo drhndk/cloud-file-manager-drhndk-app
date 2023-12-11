@@ -9,7 +9,7 @@ import { ParentFolderIdContext } from '@/components/Context/ParentFolderIdContex
 import FolderDelete from '@/components/Folder/FolderDelete'
 import CreateFolderModal from '@/components/Folder/CreateFolderModal'
 import UploadFileModal from '@/components/File/UploadFileModal'
-import { getDataList } from '@/CRUD/getData'
+import { useGetDataList } from '@/CRUD/getData'
 
 export default function Home({product,refetch}) {
   const db = getFirestore(app)
@@ -25,9 +25,9 @@ export default function Home({product,refetch}) {
 // }  
 
 // r()
-  const { data: foldersList, isLoading, refetch: folderRefetch} = getDataList('Folders',db,'folderList',[{ field: 'parentFolderId', operator: '==', value: 0 }],setParentFolderId,0)
+  const { data: foldersList, isLoading, refetch: folderRefetch} = useGetDataList('Folders',db,'folderList',[{ field: 'parentFolderId', operator: '==', value: 0 }],setParentFolderId,0)
   
-  const { data: filesList, isLoading: fileListLoading, refetch: fileRefetch} = getDataList('File',db,'fileList',[{ field: 'parentFolderId', operator: '==', value: 0 }],setParentFolderId,0)
+  const { data: filesList, isLoading: fileListLoading, refetch: fileRefetch} = useGetDataList('File',db,'fileList',[{ field: 'parentFolderId', operator: '==', value: 0 }],setParentFolderId,0)
   
   return (
     <div>

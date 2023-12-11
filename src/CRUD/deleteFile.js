@@ -42,7 +42,9 @@ async function handleDelete(refetchFile,db,data,file,router,page,msgForDelete,pa
     }
   }
 
- export const mutateDeleteFile= (refetchFile,db,data,router,page,msgForDelete,file,parentFolderId,setShowToastMsg) => useMutation({
+ export const useMutateDeleteFile= (refetchFile,db,data,router,page,msgForDelete,file,parentFolderId,setShowToastMsg) => {
+ return useMutation({
     mutationKey: 'deleteFile',
     mutationFn: async () => handleDelete(refetchFile,db,data,file,router,page,msgForDelete,parentFolderId,setShowToastMsg)
   })
+}

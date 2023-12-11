@@ -1,4 +1,4 @@
-import { getDataList } from "@/CRUD/getData"
+import { useGetDataList } from "@/CRUD/getData"
 import { ParentFolderIdContext } from "@/components/Context/ParentFolderIdContext"
 import { ShowToastContex } from "@/components/Context/ShowToastContex"
 import FileList from "@/components/File/FileList"
@@ -22,9 +22,9 @@ function FolderDetails() {
   const [fileList, setFileList] = useState([])
   const db = getFirestore(app)
 
-  const {data: folderSubList,refetch: refetchSubFolder ,isLoading: folderLoading} = getDataList('Folders',db,`folderSubList_${id}`,[{ field: 'parentFolderId', operator: '==', value: id }],setParentFolderId,id,router)
+  const {data: folderSubList,refetch: refetchSubFolder ,isLoading: folderLoading} = useGetDataList('Folders',db,`folderSubList_${id}`,[{ field: 'parentFolderId', operator: '==', value: id }],setParentFolderId,id)
   
-  const {data:fileSubList,refetch: fileRefetchSub} = getDataList('File',db,`fileSubList_${id}`,[{ field: 'parentFolderId', operator: '==', value: id }],setParentFolderId,id,router)
+  const {data:fileSubList,refetch: fileRefetchSub} = useGetDataList('File',db,`fileSubList_${id}`,[{ field: 'parentFolderId', operator: '==', value: id }],setParentFolderId,id)
 
   return (
     <div>

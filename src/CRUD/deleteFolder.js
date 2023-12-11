@@ -91,7 +91,9 @@ async function deleted(setShowToastMsg, folderNameToDelete, setFolderNameToDelet
     }
 }
 
-export const mutateDeleteFolder = (setShowToastMsg, folderNameToDelete, setFolderNameToDelete, setHandleNameError, refetchFolder, folderList, setFolderList, db) => useMutation({
+export const useMutateDeleteFolder = (setShowToastMsg, folderNameToDelete, setFolderNameToDelete, setHandleNameError, refetchFolder, folderList, setFolderList, db) => {
+  return  useMutation({
     mutationKey: ['deleteFolderAndFile'],
-    mutationFn: () => deleted(setShowToastMsg, folderNameToDelete, setFolderNameToDelete, setHandleNameError, refetchFolder, folderList, setFolderList, db)
-});
+    mutationFn: async () => deleted(setShowToastMsg, folderNameToDelete, setFolderNameToDelete, setHandleNameError, refetchFolder, folderList, setFolderList, db)
+})
+}

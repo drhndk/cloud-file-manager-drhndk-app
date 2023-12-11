@@ -8,7 +8,7 @@ import { ParentFolderIdContext } from "../Context/ParentFolderIdContext";
 import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import Spinner from "../Spinner/Spinner";
-import { mutateDeleteFile } from "@/CRUD/deleteFile";
+import { useMutateDeleteFile } from "@/CRUD/deleteFile";
 
 function DeleteFileModal({ file, refetchFile, closeModal, msgForDelete }) {
   const { data } = useSession()
@@ -20,7 +20,7 @@ function DeleteFileModal({ file, refetchFile, closeModal, msgForDelete }) {
   const db = getFirestore(app)
   const page = ['/trash']
 
-  const { mutateAsync, status, isPending } = mutateDeleteFile(refetchFile,db,data,router,page,msgForDelete,file,parentFolderId,setShowToastMsg)
+  const { mutateAsync, status, isPending } = useMutateDeleteFile(refetchFile,db,data,router,page,msgForDelete,file,parentFolderId,setShowToastMsg)
 
   const deleteFile = async () => {
     try {

@@ -25,8 +25,8 @@ async function snapDataList(collectionName, db, conditions, setParentFolderId, v
   }
 }
 
- export const getDataList =  (collectionName, db, key, conditions, setParentFolderId, value) => {  
-return  useQuery({
+ export const  useGetDataList =  (collectionName, db, key, conditions, setParentFolderId, value) => {  
+return useQuery({
     queryKey: [key],
     queryFn: () => snapDataList(collectionName, db, conditions, setParentFolderId, value),
   });

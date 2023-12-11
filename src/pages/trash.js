@@ -1,4 +1,4 @@
-import { getDataList } from "@/CRUD/getData"
+import { useGetDataList } from "@/CRUD/getData"
 import { ParentFolderIdContext } from "@/components/Context/ParentFolderIdContext"
 import Trash from "@/components/Trash/Trash"
 import app from "@/lib/firebase/init"
@@ -14,8 +14,7 @@ function TrashPage() {
     const {data} = useSession()
     const db = getFirestore(app)
    
-    const { data: trashFiles, refetch: trashRefetch, isLoading: trashLoading } = getDataList('Trash',db,'trashList'
-    );
+    const { data: trashFiles, refetch: trashRefetch, isLoading: trashLoading } = useGetDataList('Trash',db,'trashList')
 
     return (
         <Trash trashFile={trashFiles} setTrashFile={setTrashFile} refetchTrash={trashRefetch} isLoading={trashLoading}/>

@@ -18,7 +18,9 @@ async function createFolder (db,folderName,id,data,parentId,refetchFolder,setSho
     }
   }
 
- export const addFolder = (db,folderName,id,data,parentId,refetchFolder,setShowToastMsg) => useMutation({
+ export const useAddFolder = (db,folderName,id,data,parentId,refetchFolder,setShowToastMsg) =>{
+ return useMutation({
     mutationKey: ['createFolder'],
     mutationFn: async () => createFolder(db,folderName,id,data,parentId,refetchFolder,setShowToastMsg),
   })
+ }

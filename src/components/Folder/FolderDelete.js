@@ -3,7 +3,7 @@ import { collection, deleteDoc, doc, getDocs, getFirestore, query, where } from 
 import { useContext, useState } from "react";
 import { ShowToastContex } from "../Context/ShowToastContex";
 import Spinner from "../Spinner/Spinner";
-import { mutateDeleteFolder } from "@/CRUD/deleteFolder";
+import { useMutateDeleteFolder } from "@/CRUD/deleteFolder";
 
 function FolderDelete({ folderList, setFolderList, isLoading, refetchFolder }) {
   const [folderNameToDelete, setFolderNameToDelete] = useState('');
@@ -13,7 +13,7 @@ function FolderDelete({ folderList, setFolderList, isLoading, refetchFolder }) {
   const db = getFirestore(app)
 
 
-  const { mutateAsync, isPending } = mutateDeleteFolder(setShowToastMsg, folderNameToDelete, setFolderNameToDelete, setHandleNameError, refetchFolder, folderList, setFolderList, db,'Trash')
+  const { mutateAsync, isPending } = useMutateDeleteFolder(setShowToastMsg, folderNameToDelete, setFolderNameToDelete, setHandleNameError, refetchFolder, folderList, setFolderList, db,'Trash')
 
   const handleDelete = async () => {
     try {
