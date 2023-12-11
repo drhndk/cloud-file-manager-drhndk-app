@@ -6,7 +6,7 @@ import { useContext, useEffect } from "react";
 import { ParentFolderIdContext } from "../Context/ParentFolderIdContext";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import Spinner from "../Spinner/Spinner";
-import { mutateUploadFile } from "@/CRUD/addFile";
+import { useMutateUploadFile } from "@/CRUD/addFile";
 
 function UploadFileModal({ closeModal,refetchFile }) {
   const db = getFirestore(app)
@@ -16,7 +16,7 @@ function UploadFileModal({ closeModal,refetchFile }) {
   const { showToastMsg, setShowToastMsg } = useContext(ShowToastContex)
   const { parentFolderId, setParentFolderId } = useContext(ParentFolderIdContext)
 
-   const {mutateAsync,status,isPending,isError} =  mutateUploadFile(data,id,parentFolderId,db,refetchFile,storageFile,setShowToastMsg)
+  const {mutateAsync,status,isPending,isError} =  useMutateUploadFile(data,id,parentFolderId,db,refetchFile,storageFile,setShowToastMsg)
   const uploadFile = async (file) => {
     try {
       await mutateAsync(file);

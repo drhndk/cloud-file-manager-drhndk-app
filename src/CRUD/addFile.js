@@ -27,9 +27,9 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
   }
 
 
- export const mutateUploadFile = (data,id,parentId,db,refetchFile,storageFile,setShowToastMsg) => {
- return useMutation({
-    mutationKey: 'uploadFile',
-    mutationFn:  async (file) => uploadDataFile(file,data,id,parentId,db,refetchFile,storageFile,setShowToastMsg)
-  })
-}
+  export const useMutateUploadFile = (data, id, parentId, db, refetchFile, storageFile, setShowToastMsg) => {
+    return useMutation({
+      mutationKey: 'uploadFile',
+      mutationFn: async (file) => uploadDataFile(file, data, id, parentId, db, refetchFile, storageFile, setShowToastMsg),
+    });
+  }
